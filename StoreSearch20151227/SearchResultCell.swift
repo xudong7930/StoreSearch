@@ -48,7 +48,7 @@ class SearchResultCell: UITableViewCell {
         if result.artistName.isEmpty {
             artistNameLabel.text = "Unknown"
         } else {
-            artistNameLabel.text = String(format: "%@ (%@)", result.artistName, kindForDisplay(result.kind))
+            artistNameLabel.text = String(format: "%@ (%@)", result.artistName, result.kindForDisplay())
         }
         
         artworkImageView.image = UIImage(named: "Placeholder")
@@ -58,43 +58,5 @@ class SearchResultCell: UITableViewCell {
     }
     
     
-    func kindForDisplay(kind: String) -> String {
-        var kind2 = ""
-        switch kind {
-        case "album" :
-            kind2 = "Album"
-            
-        case "audiobook" :
-            kind2 = "Audio Book"
-            
-        case "book" :
-            kind2 = "Book"
-            
-        case "ebook" :
-            kind2 = "E-Book"
-            
-        case "feature-movie" :
-            kind2 = "Moview"
-            
-        case "music-video" :
-            kind2 = "Music Video"
-            
-        case "podcast" :
-            kind2 = "Podcast"
-            
-        case "software" :
-            kind2 = "App"
-            
-        case "song" :
-            kind2 = "Song"
-            
-        case "tv-episode" :
-            kind2 = "TV Episode"
-            
-        default:
-            kind2 = kind
-        }
-        
-        return kind2
-    }
+    
 }

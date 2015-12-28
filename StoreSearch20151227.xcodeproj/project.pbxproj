@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EB8D132E1C30E53200452967 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8D132D1C30E53200452967 /* LoadingCell.xib */; };
 		EB8D13311C3114DB00452967 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D13301C3114DB00452967 /* UIImageView+DownloadImage.swift */; };
+		EB8D13331C311FEB00452967 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D13321C311FEB00452967 /* DetailViewController.swift */; };
+		EB8D13351C31223400452967 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D13341C31223400452967 /* DimmingPresentationController.swift */; };
 		EBC4007D1C2FB886004FB90C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4007C1C2FB886004FB90C /* AppDelegate.swift */; };
 		EBC4007F1C2FB886004FB90C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4007E1C2FB886004FB90C /* SearchViewController.swift */; };
 		EBC400821C2FB886004FB90C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC400801C2FB886004FB90C /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 /* Begin PBXFileReference section */
 		EB8D132D1C30E53200452967 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		EB8D13301C3114DB00452967 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		EB8D13321C311FEB00452967 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		EB8D13341C31223400452967 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		EBC400791C2FB886004FB90C /* StoreSearch20151227.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch20151227.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC4007C1C2FB886004FB90C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC4007E1C2FB886004FB90C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			children = (
 				EBC4007E1C2FB886004FB90C /* SearchViewController.swift */,
 				EBC400941C2FCEA7004FB90C /* SearchResultCell.swift */,
+				EB8D13321C311FEB00452967 /* DetailViewController.swift */,
+				EB8D13341C31223400452967 /* DimmingPresentationController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -194,8 +200,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC4007F1C2FB886004FB90C /* SearchViewController.swift in Sources */,
+				EB8D13351C31223400452967 /* DimmingPresentationController.swift in Sources */,
 				EBC4008F1C2FC4D7004FB90C /* SearchResult.swift in Sources */,
 				EBC400951C2FCEA7004FB90C /* SearchResultCell.swift in Sources */,
+				EB8D13331C311FEB00452967 /* DetailViewController.swift in Sources */,
 				EBC4007D1C2FB886004FB90C /* AppDelegate.swift in Sources */,
 				EB8D13311C3114DB00452967 /* UIImageView+DownloadImage.swift in Sources */,
 			);

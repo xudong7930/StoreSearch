@@ -56,6 +56,18 @@ class SearchViewController: UIViewController {
         tableView.registerNib(cellNib3, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  
+        if segue.identifier == "ShowDetail" {
+            
+            let detailViewController = segue.destinationViewController as! DetailViewControler
+            let indexPath = sender as! NSIndexPath
+            let result = searchResults[indexPath.row]
+            
+            detailViewController.searchResult = result
+        }
+    }
+    
     
     // MARK: - CUSTOM FUNCTION
     func urlWithSearchText(searchText: String, category: Int) -> NSURL {
@@ -76,7 +88,7 @@ class SearchViewController: UIViewController {
         }
         
         let searchText2 = searchText.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200&entity=%@", searchText2!, entityName)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=20&entity=%@", searchText2!, entityName)
         
         let url = NSURL(string: urlString)
         return url!
@@ -375,6 +387,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        performSegueWithIdentifier("ShowDetail", sender: indexPath)
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
