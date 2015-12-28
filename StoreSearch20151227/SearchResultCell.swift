@@ -10,6 +10,9 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
     
+    // MARK: - VAR AND LET
+    
+    
     // MARK: - IBACTION AND IBOUTLET
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!

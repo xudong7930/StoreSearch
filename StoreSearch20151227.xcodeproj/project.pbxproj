@@ -16,6 +16,7 @@
 		EBC400931C2FCAC6004FB90C /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */; };
 		EBC400951C2FCEA7004FB90C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC400941C2FCEA7004FB90C /* SearchResultCell.swift */; };
 		EBC400971C2FDFDA004FB90C /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBC400961C2FDFDA004FB90C /* NothingFoundCell.xib */; };
+		EBC400991C2FF273004FB90C /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = EBC400981C2FF273004FB90C /* data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		EBC400941C2FCEA7004FB90C /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		EBC400961C2FDFDA004FB90C /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		EBC400981C2FF273004FB90C /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				EBC400881C2FB886004FB90C /* Info.plist */,
 				EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */,
 				EBC400961C2FDFDA004FB90C /* NothingFoundCell.xib */,
+				EBC400981C2FF273004FB90C /* data.json */,
 			);
 			path = StoreSearch20151227;
 			sourceTree = "<group>";
@@ -124,6 +127,7 @@
 				TargetAttributes = {
 					EBC400781C2FB886004FB90C = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = FRGE5Y3VHE;
 					};
 				};
 			};
@@ -151,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC400871C2FB886004FB90C /* LaunchScreen.storyboard in Resources */,
+				EBC400991C2FF273004FB90C /* data.json in Resources */,
 				EBC400841C2FB886004FB90C /* Assets.xcassets in Resources */,
 				EBC400931C2FCAC6004FB90C /* SearchResultCell.xib in Resources */,
 				EBC400971C2FDFDA004FB90C /* NothingFoundCell.xib in Resources */,
@@ -279,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = StoreSearch20151227/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xudong7930.StoreSearch20151227;
@@ -290,6 +296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = StoreSearch20151227/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xudong7930.StoreSearch20151227;
@@ -316,6 +323,7 @@
 				EBC4008D1C2FB886004FB90C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
