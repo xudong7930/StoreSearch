@@ -25,6 +25,13 @@ class SearchViewController: UIViewController {
     // MARK: - IBACTION ADN IBOUTLET
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    @IBAction func segmentChanged(sender: UISegmentedControl) {
+        
+        performSearch()
+    
+    }
     
     
     // MARK: - VIEW AND INIT
@@ -33,7 +40,7 @@ class SearchViewController: UIViewController {
         
         searchBar.becomeFirstResponder()
         
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 80
         
         // register cell 1
@@ -51,21 +58,29 @@ class SearchViewController: UIViewController {
     
     
     // MARK: - CUSTOM FUNCTION
-    func urlWithSearchText(searchText: String) -> NSURL {
+    func urlWithSearchText(searchText: String, category: Int) -> NSURL {
+        var entityName = ""
+        
+        switch category {
+        case 1:
+            entityName = "musicTrack"
+        
+        case 2:
+            entityName = "software"
+            
+        case 3:
+            entityName = "ebook"
+        
+        default:
+            entityName = ""
+        }
+        
         let searchText2 = searchText.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200", searchText2!)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200&entity=%@", searchText2!, entityName)
         
         let url = NSURL(string: urlString)
-        
         return url!
     }
-    
-    
-
-    
-    
-    
-    
     
     
     func parseJSON(data: NSData) -> [String: AnyObject]? {
@@ -125,26 +140,26 @@ class SearchViewController: UIViewController {
     
     
     func parseTrack(dictionary: [String: AnyObject]) -> SearchResult {
-        let searchResult = SearchResult()
+        let result = SearchResult()
         
-        searchResult.name = dictionary["trackName"] as! String
-        searchResult.artistName = dictionary["artistName"] as! String
-        searchResult.artworkURL60 = dictionary["artworkUrl60"] as! String
-        searchResult.artworkURL100 = dictionary["artworkUrl100"] as! String
-        searchResult.storeURL = dictionary["trackViewUrl"] as! String
-        searchResult.kind = dictionary["kind"] as! String
-        searchResult.currency = dictionary["currency"] as! String
+        result.name = dictionary["trackName"] as! String
+        result.artistName = dictionary["artistName"] as! String
+        result.artworkURL60 = dictionary["artworkUrl60"] as! String
+        result.artworkURL100 = dictionary["artworkUrl100"] as! String
+        result.storeURL = dictionary["trackViewUrl"] as! String
+        result.kind = dictionary["kind"] as! String
+        result.currency = dictionary["currency"] as! String
         
-        /*
+        
         if let price = dictionary["trackPrice"] as? NSNumber {
-            searchResult.price = Double(price)
+            result.price = Double(price)
         }
-        */
-        searchResult.price = Double(dictionary["trackPrice"] as! NSNumber)
         
-        searchResult.genre = dictionary["primaryGenreName"] as! String
+        if let genre = dictionary["primaryGenreName"] as? NSString {
+            result.genre = genre as String
+        }
         
-        return searchResult
+        return result
     }
     
     
@@ -274,6 +289,11 @@ extension SearchViewController: UISearchBarDelegate {
     
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+
+    func performSearch() {
         
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
@@ -287,7 +307,7 @@ extension SearchViewController: UISearchBarDelegate {
             searchResults.removeAll()
             
             
-            let url = self.urlWithSearchText(searchBar.text!)
+            let url = self.urlWithSearchText(searchBar.text!, category: segmentControl.selectedSegmentIndex)
             let session = NSURLSession.sharedSession()
             
             dataTask = session.dataTaskWithURL(url, completionHandler: {
