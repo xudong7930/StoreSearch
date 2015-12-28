@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB8D132E1C30E53200452967 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8D132D1C30E53200452967 /* LoadingCell.xib */; };
 		EBC4007D1C2FB886004FB90C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4007C1C2FB886004FB90C /* AppDelegate.swift */; };
 		EBC4007F1C2FB886004FB90C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4007E1C2FB886004FB90C /* SearchViewController.swift */; };
 		EBC400821C2FB886004FB90C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC400801C2FB886004FB90C /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB8D132D1C30E53200452967 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		EBC400791C2FB886004FB90C /* StoreSearch20151227.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch20151227.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC4007C1C2FB886004FB90C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC4007E1C2FB886004FB90C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +47,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB8D132C1C30E51600452967 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */,
+				EBC400961C2FDFDA004FB90C /* NothingFoundCell.xib */,
+				EB8D132D1C30E53200452967 /* LoadingCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		EBC400701C2FB886004FB90C = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +76,7 @@
 		EBC4007B1C2FB886004FB90C /* StoreSearch20151227 */ = {
 			isa = PBXGroup;
 			children = (
+				EB8D132C1C30E51600452967 /* View */,
 				EBC400911C2FC533004FB90C /* Controller */,
 				EBC400901C2FC4DB004FB90C /* Model */,
 				EBC4007C1C2FB886004FB90C /* AppDelegate.swift */,
@@ -71,8 +84,6 @@
 				EBC400831C2FB886004FB90C /* Assets.xcassets */,
 				EBC400851C2FB886004FB90C /* LaunchScreen.storyboard */,
 				EBC400881C2FB886004FB90C /* Info.plist */,
-				EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */,
-				EBC400961C2FDFDA004FB90C /* NothingFoundCell.xib */,
 				EBC400981C2FF273004FB90C /* data.json */,
 			);
 			path = StoreSearch20151227;
@@ -154,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB8D132E1C30E53200452967 /* LoadingCell.xib in Resources */,
 				EBC400871C2FB886004FB90C /* LaunchScreen.storyboard in Resources */,
 				EBC400991C2FF273004FB90C /* data.json in Resources */,
 				EBC400841C2FB886004FB90C /* Assets.xcassets in Resources */,
