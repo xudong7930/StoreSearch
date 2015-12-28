@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
-    
+    var dataTask: NSURLSessionDataTask?
     
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -278,6 +278,8 @@ extension SearchViewController: UISearchBarDelegate {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             
+            dataTask?.cancel() // 如果之前还在请求，现在则取消请求
+            
             isLoading = true
             tableView.reloadData()
             
@@ -287,11 +289,17 @@ extension SearchViewController: UISearchBarDelegate {
             
             let url = self.urlWithSearchText(searchBar.text!)
             let session = NSURLSession.sharedSession()
-            let dataTask = session.dataTaskWithURL(url, completionHandler: {
+            
+            dataTask = session.dataTaskWithURL(url, completionHandler: {
                 (data, response, error) in
                 
                 if let error2 = error {
+                    
+                    if error2.code == -999 {
+                        return
+                    }
                     print("请求错误:\(error2.localizedDescription)")
+                    
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     
                     if httpResponse.statusCode == 200 {
@@ -323,7 +331,7 @@ extension SearchViewController: UISearchBarDelegate {
                 
             })
             
-            dataTask.resume() // 开始请求
+            dataTask?.resume() // 开始请求
         }
         
     }
