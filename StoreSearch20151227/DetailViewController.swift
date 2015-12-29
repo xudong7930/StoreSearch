@@ -41,6 +41,8 @@ class DetailViewControler: UIViewController {
         super.viewDidLoad()
         
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1.0)
+        view.backgroundColor = UIColor.clearColor()
+        
         popupView.layer.cornerRadius = 10
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
@@ -51,8 +53,8 @@ class DetailViewControler: UIViewController {
         if searchResult != nil {
             updateUI()
         }
-        
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -110,6 +112,10 @@ extension DetailViewControler: UIViewControllerTransitioningDelegate {
         return DimmingPresentationController(presentedViewController: presented, presentingViewController: presenting)
     }
     
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutAnimationController()
+    }
+    
 }
 
 
@@ -120,5 +126,9 @@ extension DetailViewControler: UIGestureRecognizerDelegate {
         return (view === touch.view)
     }
     
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BounceAnimationController()
+    }
     
 }
