@@ -79,6 +79,39 @@
             </objects>
             <point key="canvasLocation" x="-298" y="-119"/>
         </scene>
+        <!--Landscape View Controller-->
+        <scene sceneID="KWz-UZ-AFF">
+            <objects>
+                <viewController storyboardIdentifier="LandscapeViewController" id="eco-0i-2ng" customClass="LandscapeViewController" customModule="StoreSearch20151227" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L8L-J1-IY6"/>
+                        <viewControllerLayoutGuide type="bottom" id="FcL-On-wwK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vOt-3x-Vy9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJV-BK-iLT">
+                                <rect key="frame" x="114" y="236" width="240" height="128"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="l1p-VR-4GL">
+                                <rect key="frame" x="201" y="451" width="39" height="37"/>
+                                <connections>
+                                    <action selector="pageChanged:" destination="eco-0i-2ng" eventType="valueChanged" id="agf-9x-utG"/>
+                                </connections>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="l1p-VR-4GL" id="bem-dD-kHC"/>
+                        <outlet property="scrollView" destination="NJV-BK-iLT" id="S30-Ql-Sg8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MzR-iX-c5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-298" y="638"/>
+        </scene>
         <!--Detail View Controler-->
         <scene sceneID="Eug-rd-ecR">
             <objects>
