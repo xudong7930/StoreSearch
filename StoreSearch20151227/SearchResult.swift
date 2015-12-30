@@ -26,34 +26,34 @@ class SearchResult {
         var kind2 = ""
         switch kind {
         case "album" :
-            kind2 = "Album"
+            kind2 = NSLocalizedString("Album", comment: "Localized kind: Album")
             
         case "audiobook" :
-            kind2 = "Audio Book"
+            kind2 = NSLocalizedString("Audio Book", comment: "Localized kind: Audio Book")
             
         case "book" :
-            kind2 = "Book"
+            kind2 = NSLocalizedString("Book", comment: "Localized kind: Book")
             
         case "ebook" :
-            kind2 = "E-Book"
+            kind2 = NSLocalizedString("E-Book", comment: "Localized kind: E-Book")
             
         case "feature-movie" :
-            kind2 = "Moview"
+            kind2 = NSLocalizedString("Moview", comment: "Localized kind: Feature Movie")
             
         case "music-video" :
-            kind2 = "Music Video"
+            kind2 = NSLocalizedString("Music Video", comment: "Localized kind: Music Video")
             
         case "podcast" :
-            kind2 = "Podcast"
+            kind2 = NSLocalizedString("Podcast", comment: "Localized kind: Podcast")
             
         case "software" :
-            kind2 = "App"
+            kind2 = NSLocalizedString("App", comment: "Localized kind: Software")
             
         case "song" :
-            kind2 = "Song"
+            kind2 = NSLocalizedString("Song", comment: "Localized kind: Song")
             
         case "tv-episode" :
-            kind2 = "TV Episode"
+            kind2 = NSLocalizedString("TV Episode", comment: "Localied kind: TV Episode")
             
         default:
             kind2 = kind
