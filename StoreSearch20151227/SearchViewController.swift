@@ -148,7 +148,9 @@ class SearchViewController: UIViewController {
                 _ in
                     controller.view.alpha = 0
                 
-                
+                    if self.presentedViewController != nil {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 
                 }, completion: {
                 _ in
@@ -182,6 +184,11 @@ extension SearchViewController: UISearchBarDelegate {
                 
                 self.tableView.reloadData()
                 
+                
+                if let controller = self.landscapeViewController {
+                    controller.searchResultsReceived()
+                }
+                
             })
             
             tableView.reloadData()
@@ -201,32 +208,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
-/*
-        if search.isLoading {
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.loadingCell, forIndexPath: indexPath)
-            
-            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
-            spinner.startAnimating()
-            
-            return cell
-        }
-        else if search.searchResults.count > 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
-            
-            let result = search.searchResults[indexPath.row]
-            
-            cell.configureForSearchResult(result)
-            
-            return cell
-        } else {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath) 
-            
-            return cell
-        }
-*/
         
         switch search.state {
         case .NotSearchYet:

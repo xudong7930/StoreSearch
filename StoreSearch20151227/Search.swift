@@ -55,10 +55,12 @@ class Search {
         if !text.isEmpty {
             dataTask?.cancel()
             
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             state = .Loading
             
             let url = urlWithSearchText(text, category: category)
             let session = NSURLSession.sharedSession()
+    
             dataTask = session.dataTaskWithURL(url, completionHandler: {
                 (data, response, error) -> Void in
                 
@@ -72,14 +74,18 @@ class Search {
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data!) {
-                            
+                        
                             var searchResults = self.parseDictionary(dictionary)
                             if searchResults.isEmpty {
                                 self.state = .NoResults
                             } else {
+                                
+                        
                                 searchResults.sortInPlace({
-                                    $0.name.localizedCaseInsensitiveCompare($1.name) == .OrderedAscending
+                                    $0.name.localizedStandardCompare($1.name) == .OrderedAscending
                                 })
+                                
+                                self.state = .Results(searchResults)
                             }
                         
                             success = true
@@ -88,6 +94,7 @@ class Search {
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     completion(success)
                 })
                 
