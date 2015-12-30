@@ -67,7 +67,16 @@ class LandscapeViewController: UIViewController {
         
         if fistTime {
             fistTime = false
-            titleButtons(search.searchResults)
+            
+            
+            switch search.state {
+            case .NotSearchYet, .Loading, .NoResults:
+                break
+                
+            case .Results(let list):
+                titleButtons(list)
+            }
+
         }
     }
     
@@ -151,7 +160,7 @@ class LandscapeViewController: UIViewController {
         }
         
         let buttonPerpage = columnsPerPage * rowsPerPage
-        let numPages = 1 + (search.searchResults.count - 1) / buttonPerpage
+        let numPages = 1 + (results.count - 1) / buttonPerpage
         
         scrollView.contentSize = CGSize(width: CGFloat(numPages) * scrollViewWidth, height: scrollView.bounds.height)
         

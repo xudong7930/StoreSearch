@@ -13,26 +13,56 @@ typealias SearchComplete = (Bool) -> Void
 
 class Search {
     
-    var searchResults = [SearchResult]()
-    var hasSearched = false
-    var isLoading = false
+    // MARK: - VAR AND LET
+    private(set) var state: State = .NotSearchYet // private(set)表示只能在本类中分配值
     
     var dataTask: NSURLSessionDataTask?
     
+    enum State {
+        case NotSearchYet
+        case Loading
+        case NoResults
+        case Results([SearchResult])
+    }
+    
+    enum Category: Int {
+        case All = 0
+        case Music = 1
+        case Software = 2
+        case EBook = 3
+        
+        var entityName: String {
+            switch self {
+            case .All:
+                return ""
+                
+            case .Music:
+                return "musicTrack"
+                
+            case .Software:
+                return "software"
+                
+            case .EBook:
+                return "ebook"
+                
+            }
+        }
+    }
+    
     
     // MARK: - CUSTOM FUNCTION
-    func performSearchForText(text: String, category: Int, completion: SearchComplete) {
+    func performSearchForText(text: String, category: Category, completion: SearchComplete) {
         if !text.isEmpty {
             dataTask?.cancel()
             
-            isLoading = true
-            hasSearched = true
-            searchResults.removeAll()
+            state = .Loading
             
             let url = urlWithSearchText(text, category: category)
             let session = NSURLSession.sharedSession()
             dataTask = session.dataTaskWithURL(url, completionHandler: {
                 (data, response, error) -> Void in
+                
+                self.state = .NotSearchYet
                 var success = false
                 
                 if let error2 = error {
@@ -43,23 +73,18 @@ class Search {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data!) {
                             
-                            self.searchResults = self.parseDictionary(dictionary)
-                            
-                            self.searchResults.sortInPlace({
-                                $0.name.localizedCaseInsensitiveCompare($1.name) == .OrderedAscending
-                            })
-                            
-                            self.isLoading = false
+                            var searchResults = self.parseDictionary(dictionary)
+                            if searchResults.isEmpty {
+                                self.state = .NoResults
+                            } else {
+                                searchResults.sortInPlace({
+                                    $0.name.localizedCaseInsensitiveCompare($1.name) == .OrderedAscending
+                                })
+                            }
+                        
                             success = true
-                            //return
                         }
                     }
-                }
-                
-                if !success {
-                
-                    self.hasSearched = false
-                    self.isLoading = false
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -74,22 +99,9 @@ class Search {
     }
     
     
-    func urlWithSearchText(searchText: String, category: Int) -> NSURL {
-        var entityName = ""
+    func urlWithSearchText(searchText: String, category: Category) -> NSURL {
         
-        switch category {
-        case 1:
-            entityName = "musicTrack"
-            
-        case 2:
-            entityName = "software"
-            
-        case 3:
-            entityName = "ebook"
-            
-        default:
-            entityName = ""
-        }
+        let entityName = category.entityName
         
         let searchText2 = searchText.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=20&entity=%@", searchText2!, entityName)
