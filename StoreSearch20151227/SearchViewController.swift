@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
     
     var landscapeViewController: LandscapeViewController?
     
+    weak var splitViewDetail: DetailViewControler?
     
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -54,6 +55,12 @@ class SearchViewController: UIViewController {
         // register cell 3
         let cellNib3 = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
         tableView.registerNib(cellNib3, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+        
+        title = NSLocalizedString("Search", comment: "Split-view master button")
+        
+        if UIDevice.currentDevice().userInterfaceIdiom != .Pad {
+            searchBar.becomeFirstResponder()
+        }
     }
     
     
@@ -69,6 +76,7 @@ class SearchViewController: UIViewController {
                 let result = list[indexPath.row]
                 
                 detailViewController.searchResult = result
+                detailViewController.isPopUp = true
                 
             default:
                 break
@@ -94,6 +102,14 @@ class SearchViewController: UIViewController {
     
     
     // MARK: - CUSTOM FUNCTION
+    func hideMasterPane() {
+        UIView.animateWithDuration(0.25, animations: {
+                self.splitViewController!.preferredDisplayMode = .PrimaryHidden
+            }, completion: {
+            _ in
+            self.splitViewController?.preferredDisplayMode = .Automatic
+        })
+    }
     
     
     func showNetworkError() {
@@ -257,9 +273,26 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        performSegueWithIdentifier("ShowDetail", sender: indexPath)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass
+            == .Compact {
+        
+                performSegueWithIdentifier("ShowDetail", sender: indexPath)
+        
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else {
+            switch search.state {
+            case .Results(let list):
+                splitViewDetail?.searchResult = list[indexPath.row]
+                
+            default:
+                break
+            }
+            
+            if splitViewController!.displayMode != .AllVisible {
+                hideMasterPane()
+            }
+        }
     }
     
     

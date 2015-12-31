@@ -11,8 +11,18 @@ import UIKit
 class DetailViewControler: UIViewController {
     
     // MARK: - VIEW AND INIT
-    var searchResult: SearchResult!
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded() {
+                updateUI()
+            }
+        }
+    }
+    
+    
     var downloadTask: NSURLSessionDownloadTask?
+    var isPopUp = false
+    
     
     enum AnimationStyle {
         case Slide
@@ -52,10 +62,23 @@ class DetailViewControler: UIViewController {
         
         popupView.layer.cornerRadius = 10
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+
+        if isPopUp {            
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            
+            view.addGestureRecognizer(gestureRecognizer)
+            view.backgroundColor = UIColor.clearColor()
+        } else {
+            
+            view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+            popupView.hidden = true
+            
+            if let displayName = NSBundle.mainBundle().localizedInfoDictionary?["CFBundleDisplayName"] as? NSString {
+                title = displayName as String
+            }
+        }
         
         if searchResult != nil {
             updateUI()
@@ -109,6 +132,8 @@ class DetailViewControler: UIViewController {
         if let url2 = NSURL(string: searchResult.artworkURL100) {
             downloadTask = artworkImageView.loadImageWithURL(url2)
         }
+        
+        popupView.hidden = false
     }
 }
 

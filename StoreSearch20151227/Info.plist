@@ -35,6 +35,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>Supported interface orientations(iPad)</key>
+	<array>
+		<string>Landscape(right home button)</string>
+		<string>Portraint(top home button)</string>
+		<string>Landscape(left home button)</string>
+		<string>Portrait(button home button)</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

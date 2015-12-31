@@ -116,7 +116,7 @@ class Search {
         
         let searchText2 = searchText.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=20&entity=%@&lang=%@&country=%@", searchText2!, entityName, language, countryCode)
-        
+        //print(urlString)
         let url = NSURL(string: urlString)
         return url!
     }
