@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MessageUI
+
 
 class DetailViewControler: UIViewController {
     
@@ -30,6 +32,8 @@ class DetailViewControler: UIViewController {
     }
     
     var dismissAnimationStyle = AnimationStyle.Fade
+    
+    
     
     // MARK: - IBACTION ADN IBOUTLET
     @IBAction func close() {
@@ -98,6 +102,14 @@ class DetailViewControler: UIViewController {
     
     deinit {
         downloadTask?.cancel()
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowMenu" {
+            let controller = segue.destinationViewController as! MenuViewController
+            controller.delegate = self
+        }
     }
     
     
@@ -171,4 +183,32 @@ extension DetailViewControler: UIGestureRecognizerDelegate {
         return BounceAnimationController()
     }
     
+}
+
+
+// MARK: - MenuViewController Delegate
+extension DetailViewControler: MenuViewControllerDelegate {
+    func MenuViewControllerSendSupportEmail(controller: MenuViewController) {
+        
+        if MFMailComposeViewController.canSendMail() {
+            let controller = MFMailComposeViewController()
+            
+            controller.setSubject(NSLocalizedString("Support Request", comment: "Email subject"))
+            controller.setToRecipients(["your@email-address-here.com"])
+            
+            controller.mailComposeDelegate = self
+            controller.modalPresentationStyle = .FormSheet
+            
+            self.presentViewController(controller, animated: true, completion: nil)
+            
+        }
+    }
+}
+
+
+// MARK: - MAIL 
+extension DetailViewControler: MFMailComposeViewControllerDelegate {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

@@ -29,6 +29,7 @@
 		EBC400931C2FCAC6004FB90C /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */; };
 		EBC400951C2FCEA7004FB90C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC400941C2FCEA7004FB90C /* SearchResultCell.swift */; };
 		EBC400991C2FF273004FB90C /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = EBC400981C2FF273004FB90C /* data.json */; };
+		EBF3F4131C34D3E50029C7DC /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF3F4121C34D3E50029C7DC /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		EBC400921C2FCAC6004FB90C /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		EBC400941C2FCEA7004FB90C /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		EBC400981C2FF273004FB90C /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		EBF3F4121C34D3E50029C7DC /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				EB7B26501C3232FD00C2EB5E /* LandscapeViewController.swift */,
 				EB79F2291C328656007CF75E /* FadeOutAnimationController.swift */,
 				EB95E8D21C32B42D00027451 /* Search.swift */,
+				EBF3F4121C34D3E50029C7DC /* MenuViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				EB95E8D31C32B42D00027451 /* Search.swift in Sources */,
 				EBC4007F1C2FB886004FB90C /* SearchViewController.swift in Sources */,
 				EB8D13351C31223400452967 /* DimmingPresentationController.swift in Sources */,
+				EBF3F4131C34D3E50029C7DC /* MenuViewController.swift in Sources */,
 				EB79F22A1C328656007CF75E /* FadeOutAnimationController.swift in Sources */,
 				EBC4008F1C2FC4D7004FB90C /* SearchResult.swift in Sources */,
 				EBC400951C2FCEA7004FB90C /* SearchResultCell.swift in Sources */,
